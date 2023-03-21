@@ -46,7 +46,7 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru3",
+  "address": "склад",
   "positions": [
     {
       "product": 2,
@@ -65,7 +65,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/stocks/13/
 ###
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/1/
+PATCH {{baseUrl}}/stocks/16/
 Content-Type: application/json
 
 {
@@ -78,7 +78,7 @@ Content-Type: application/json
     {
       "product": 3,
       "quantity": 243,
-      "price": 145
+      "price": 14
     }
   ]
 }
