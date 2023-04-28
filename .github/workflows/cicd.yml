@@ -20,17 +20,17 @@ jobs:
     services:
       postgresql_main:
         image: postgres:12
+        ports:
+          - 5432:5432
         env:
           POSTGRES_DB: ${{ env.DB_NAME }}
           POSTGRES_USER: ${{ env.DB_USER }}
           POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
-        ports:
-          - 5432:5432
         options:
           --health-cmd pg_isready
           --health-interval 5s
           --health-timout 5s
-          --health-retries 5s
+          --health-retries 5
 
     steps:
       - name: Проверка репозитория на изменения
