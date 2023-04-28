@@ -1,24 +1,25 @@
 from rest_framework import serializers
 from .models import Product, Stock, StockProduct
+
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id','title','description']
-
+        fields = ['id', 'title', 'description']
 
 
 class ProductPositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = StockProduct
-        fields = ['id','product','quantity','price']
-    
+        fields = ['id', 'product', 'quantity', 'price']
 
 
 class StockSerializer(serializers.ModelSerializer):
     positions = ProductPositionSerializer(many=True)
+
     class Meta:
         model = Stock
-        fields = ['id','address','products','positions']
+        fields = ['id', 'address', 'products', 'positions']
 
     def create(self, validated_data):
 
@@ -26,7 +27,7 @@ class StockSerializer(serializers.ModelSerializer):
 
         stock = super().create(validated_data)
         for position in positions:
-            stock_product = StockProduct(stock=stock,**position)
+            stock_product = StockProduct(stock=stock, **position)
             stock_product.save()
         return stock
 
@@ -41,12 +42,9 @@ class StockSerializer(serializers.ModelSerializer):
                 stock=stock,
                 product=position['product'],
                 defaults={
-                        'price': position['price'], 
+                        'price': position['price'],
                         'quantity': position['quantity']
                         }
-                    ) 
+                    )
 
         return stock
-        
-
-        
