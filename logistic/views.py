@@ -6,6 +6,12 @@ from logistic.serializers import ProductSerializer, StockSerializer
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+from django.http import HttpResponse
+
+
+def home_page(request):
+    return HttpResponse('Тест cicd')
+
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
