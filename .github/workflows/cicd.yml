@@ -30,7 +30,7 @@ jobs:
           --health-cmd pg_isready
           --health-interval 5s
           --health-timout 5s
-          --health-retries 5
+          --health-retries 5s
 
     steps:
       - name: Проверка репозитория на изменения
